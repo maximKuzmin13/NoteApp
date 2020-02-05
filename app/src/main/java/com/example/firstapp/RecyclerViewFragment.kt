@@ -7,12 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.fragment_notes.*
-import com.example.firstapp.RecyclerViewFragment as RecyclerViewFragment1
 
 
 class RecyclerViewFragment : Fragment() {
+    var numberList = ArrayList<Int>()
+    val recyclerAdapter = RecyclerAdapter()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -26,19 +26,20 @@ class RecyclerViewFragment : Fragment() {
         recycler_view.apply {
             layoutManager = LinearLayoutManager(activity)
         }
-        val recyclerAdapter = RecyclerAdapter()
         recycler_view.adapter = recyclerAdapter
-        val numberList = ArrayList<Int>()
         for (i in 1..3) {
             numberList.add(i)
         }
         recyclerAdapter.setValue(numberList)
         add_note.setOnClickListener {
+            recyclerAdapter.setValue(numberList)
             activity?.supportFragmentManager?.beginTransaction()?.replace(
                     R.id.fl_content,
                     AddNoteFragment(),
                     AddNoteFragment::class.java.simpleName
-                )?.addToBackStack(AddNoteFragment::class.java.simpleName)?.commit()
+                )?.commit()
+
         }
     }
+
 }
