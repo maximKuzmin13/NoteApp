@@ -34,10 +34,10 @@ class RecyclerViewFragment : Fragment() {
         add_note.setOnClickListener {
             recyclerAdapter.setValue(numberList)
             activity?.supportFragmentManager?.beginTransaction()?.replace(
-                    R.id.fl_content,
-                    AddNoteFragment(),
-                    AddNoteFragment::class.java.simpleName
-                )?.commit()
+                R.id.fl_content,
+                AddNoteFragment(),
+                AddNoteFragment::class.java.simpleName
+            )?.addToBackStack(AddNoteFragment::class.java.simpleName)?.commit()
 
         }
     }
