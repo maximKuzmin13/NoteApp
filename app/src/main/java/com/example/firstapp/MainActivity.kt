@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentTransaction
 
 class MainActivity :  AppCompatActivity() {
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -14,4 +15,5 @@ class MainActivity :  AppCompatActivity() {
             supportFragmentManager.beginTransaction()
         mFragmentTransaction.add(R.id.fl_content, fragment).commit()
     }
+
 }

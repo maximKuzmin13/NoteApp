@@ -6,13 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_notes.*
 
-
 class RecyclerViewFragment : Fragment() {
-    private val textList = ArrayList<String>()
-    private val recyclerAdapter = RecyclerAdapter()
+
+    private val notesViewModel by lazy { ViewModelProviders.of(this).get(NotesViewModel::class.java)}
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -23,16 +24,15 @@ class RecyclerViewFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        recycler_view.apply {layoutManager = LinearLayoutManager(activity)}
+        val recyclerAdapter = RecyclerAdapter()
+        recycler_view.layoutManager = LinearLayoutManager(activity)
         recycler_view.adapter = recyclerAdapter
-        textList.add("")
+        notesViewModel.getNoteList().observe(this, Observer { it?.let { recyclerAdapter.setNotes(it) } })
         add_note.setOnClickListener {
-            recyclerAdapter.setValue(textList)
             activity?.supportFragmentManager?.beginTransaction()?.replace(
                 R.id.fl_content,
                 AddNoteFragment()
             )?.addToBackStack(null)?.commit()
         }
     }
-
 }
