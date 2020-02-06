@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -14,6 +15,10 @@ import kotlinx.android.synthetic.main.fragment_notes.*
 class RecyclerViewFragment : Fragment() {
 
     private val notesViewModel by lazy { ViewModelProviders.of(this).get(NotesViewModel::class.java)}
+
+    override fun onResume() {
+        super.onResume()
+    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
