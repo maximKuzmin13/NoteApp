@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.fragment_notes.*
 
 
 class RecyclerViewFragment : Fragment() {
-    var numberList = ArrayList<Int>()
+    var numberList = ArrayList<String>()
     val recyclerAdapter = RecyclerAdapter()
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,7 +27,7 @@ class RecyclerViewFragment : Fragment() {
             layoutManager = LinearLayoutManager(activity)
         }
         recycler_view.adapter = recyclerAdapter
-        numberList.add(1)
+        numberList.add("")
         add_note.setOnClickListener {
             recyclerAdapter.setValue(numberList)
             activity?.supportFragmentManager?.beginTransaction()?.replace(
