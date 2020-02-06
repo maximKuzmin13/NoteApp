@@ -23,18 +23,15 @@ class RecyclerViewFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        recycler_view.apply {
-            layoutManager = LinearLayoutManager(activity)
-        }
+        recycler_view.apply {layoutManager = LinearLayoutManager(activity)}
         recycler_view.adapter = recyclerAdapter
         textList.add("")
         add_note.setOnClickListener {
             recyclerAdapter.setValue(textList)
             activity?.supportFragmentManager?.beginTransaction()?.replace(
                 R.id.fl_content,
-                AddNoteFragment(),
-                AddNoteFragment::class.java.simpleName
-            )?.addToBackStack(AddNoteFragment::class.java.simpleName)?.commit()
+                AddNoteFragment()
+            )?.addToBackStack(null)?.commit()
         }
     }
 
