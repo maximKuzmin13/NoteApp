@@ -8,11 +8,11 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_recycler.view.*
 
 class RecyclerAdapter: RecyclerView.Adapter<RecyclerAdapter.ItemViewHolder>(){
-    var value = ArrayList<String>()
+    var note = ArrayList<String>()
 
-    fun setValue(number:List<String>){
-        value.clear()
-        value.addAll(number)
+    fun setValue(text:List<String>){
+        note.clear()
+        note.addAll(text)
         notifyDataSetChanged()
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
@@ -21,11 +21,11 @@ class RecyclerAdapter: RecyclerView.Adapter<RecyclerAdapter.ItemViewHolder>(){
         return ItemViewHolder(itemView)
     }
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        holder.numbers.text = value[position]
+        holder.notes.text = note[position]
     }
-    override fun getItemCount() = value.size
+    override fun getItemCount() = note.size
 
     class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val numbers: TextView = itemView.rv_text
+        val notes: TextView = itemView.rv_text
     }
 }
