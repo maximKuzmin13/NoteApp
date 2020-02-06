@@ -20,7 +20,6 @@ class AddNoteFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         savebtn.setOnClickListener{
-            RecyclerViewFragment().numberList.add(1)
             activity?.supportFragmentManager?.popBackStack()
         }
     }

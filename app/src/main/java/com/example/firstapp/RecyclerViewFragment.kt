@@ -27,10 +27,7 @@ class RecyclerViewFragment : Fragment() {
             layoutManager = LinearLayoutManager(activity)
         }
         recycler_view.adapter = recyclerAdapter
-        for (i in 1..3) {
-            numberList.add(i)
-        }
-        recyclerAdapter.setValue(numberList)
+        numberList.add(1)
         add_note.setOnClickListener {
             recyclerAdapter.setValue(numberList)
             activity?.supportFragmentManager?.beginTransaction()?.replace(
@@ -38,8 +35,6 @@ class RecyclerViewFragment : Fragment() {
                 AddNoteFragment(),
                 AddNoteFragment::class.java.simpleName
             )?.addToBackStack(AddNoteFragment::class.java.simpleName)?.commit()
-
         }
     }
-
 }

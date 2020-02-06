@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_recycler.view.*
 
 class RecyclerAdapter: RecyclerView.Adapter<RecyclerAdapter.ItemViewHolder>(){
-
     var value = ArrayList<Int>()
 
     fun setValue(number:List<Int>){
