@@ -11,8 +11,8 @@ import kotlinx.android.synthetic.main.fragment_notes.*
 
 
 class RecyclerViewFragment : Fragment() {
-    var textList = ArrayList<String>()
-    val recyclerAdapter = RecyclerAdapter()
+    private val textList = ArrayList<String>()
+    private val recyclerAdapter = RecyclerAdapter()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -37,4 +37,5 @@ class RecyclerViewFragment : Fragment() {
             )?.addToBackStack(AddNoteFragment::class.java.simpleName)?.commit()
         }
     }
+
 }

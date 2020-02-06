@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_recycler.view.*
 
 class RecyclerAdapter: RecyclerView.Adapter<RecyclerAdapter.ItemViewHolder>(){
-    var note = ArrayList<String>()
+    private val note = ArrayList<String>()
 
     fun setValue(text:List<String>){
         note.clear()
