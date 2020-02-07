@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class RecyclerAdapter: RecyclerView.Adapter<RecyclerAdapter.ItemViewHolder>(){
-    private val notes = mutableListOf<Notes>()
+    private var notes = mutableListOf<Notes>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         return ItemViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_recycler, parent, false))
@@ -18,8 +18,8 @@ class RecyclerAdapter: RecyclerView.Adapter<RecyclerAdapter.ItemViewHolder>(){
     }
     override fun getItemCount() = notes.size
 
-    fun setNotes(newnote: Notes) {
-        notes.add(newnote)
+    fun setNotes(newnote: List<Notes>) {
+        this.notes = newnote as MutableList<Notes>
         notifyDataSetChanged()
     }
 

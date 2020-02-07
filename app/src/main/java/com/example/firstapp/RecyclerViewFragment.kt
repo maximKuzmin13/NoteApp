@@ -30,7 +30,6 @@ class RecyclerViewFragment : Fragment() {
         recycler_view.layoutManager = LinearLayoutManager(activity)
         recycler_view.adapter = recyclerAdapter
         notesViewModel.getNoteList().observe(this, Observer { it?.let { recyclerAdapter.setNotes(it) } })
-
         add_note.setOnClickListener {
             activity?.supportFragmentManager?.beginTransaction()?.replace(
                 R.id.fl_content,
