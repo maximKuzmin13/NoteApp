@@ -6,8 +6,10 @@ import androidx.lifecycle.ViewModel
 class NotesViewModel: ViewModel() {
     var notesList : MutableLiveData<List<Notes>> = MutableLiveData()
 
-    init {
-        notesList.value = NotesData.getNotes()
-    }
+    init {notesList.value = NotesInterator().setTextInNote()}
+
     fun getNoteList() = notesList
+    fun addTextNote(){
+
+    }
 }

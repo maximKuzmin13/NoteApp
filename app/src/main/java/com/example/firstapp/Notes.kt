@@ -1,5 +1,4 @@
 package com.example.firstapp
 
 data class Notes (
-    var text: String = ""
-)
+    val text: String)

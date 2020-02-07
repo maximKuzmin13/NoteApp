@@ -15,15 +15,12 @@ import kotlinx.android.synthetic.main.fragment_notes.*
 class RecyclerViewFragment : Fragment() {
 
     private val notesViewModel by lazy { ViewModelProviders.of(this).get(NotesViewModel::class.java)}
-
-    override fun onResume() {
-        super.onResume()
-    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        (activity as AppCompatActivity).supportActionBar?.title = "Заметки"
         return inflater.inflate(R.layout.fragment_notes, container, false)
     }
 
@@ -33,6 +30,7 @@ class RecyclerViewFragment : Fragment() {
         recycler_view.layoutManager = LinearLayoutManager(activity)
         recycler_view.adapter = recyclerAdapter
         notesViewModel.getNoteList().observe(this, Observer { it?.let { recyclerAdapter.setNotes(it) } })
+
         add_note.setOnClickListener {
             activity?.supportFragmentManager?.beginTransaction()?.replace(
                 R.id.fl_content,
