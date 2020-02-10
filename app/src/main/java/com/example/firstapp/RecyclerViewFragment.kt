@@ -8,13 +8,14 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_notes.*
 
-class RecyclerViewFragment : Fragment() {
 
-    private val notesViewModel by lazy { ViewModelProviders.of(this).get(NotesViewModel::class.java)}
+class RecyclerViewFragment : Fragment() {
+    private lateinit var noteViewModel: NoteViewModel
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -26,10 +27,11 @@ class RecyclerViewFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val recyclerAdapter = RecyclerAdapter()
         recycler_view.layoutManager = LinearLayoutManager(activity)
-        recycler_view.adapter = recyclerAdapter
-        notesViewModel.getNoteList().observe(this, Observer { it?.let { recyclerAdapter.setNotes(it) } })
+        val adapter = RecyclerAdapter()
+        recycler_view.adapter = adapter
+        noteViewModel = ViewModelProvider(this).get(NoteViewModel::class.java)// Здесь ставится курсор ошибки
+        noteViewModel.getAllNotes().observe(viewLifecycleOwner, Observer<List<Notes>> {})
         add_note.setOnClickListener {
             activity?.supportFragmentManager?.beginTransaction()?.replace(
                 R.id.fl_content,
