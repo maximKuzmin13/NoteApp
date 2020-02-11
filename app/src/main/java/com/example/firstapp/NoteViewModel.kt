@@ -4,12 +4,19 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 
-class NoteViewModel(application: Application) : ViewModel() {
-    private var repository: NoteRepository =
-        NoteRepository(application)
-    private var allNotes: LiveData<List<Notes>> = repository.getAllNotes()
+class NoteViewModel : ViewModel() {
+    private var repository: NoteRepository? = null
+    private var allNotes: LiveData<List<Notes>>? = repository?.getAllNotes()
 
-    fun getAllNotes(): LiveData<List<Notes>> {
+    fun insert(note: Notes) {
+        repository?.insert(note)
+    }
+
+    fun deleteAllNotes() {
+        repository?.deleteAllNotes()
+    }
+
+    fun getAllNotes(): LiveData<List<Notes>>? {
         return allNotes
     }
 }

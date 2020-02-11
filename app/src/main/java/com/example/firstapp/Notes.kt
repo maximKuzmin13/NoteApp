@@ -7,4 +7,5 @@ import androidx.room.PrimaryKey
 data class Notes (var text: String) {
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0
+
 }

@@ -1,21 +1,19 @@
-package com.example.firstapp
-
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.firstapp.AddNoteFragment
+import com.example.firstapp.Notes
+import com.example.firstapp.R
+import com.example.firstapp.RecyclerAdapter
 import kotlinx.android.synthetic.main.fragment_notes.*
 
 
 class RecyclerViewFragment : Fragment() {
-    private lateinit var noteViewModel: NoteViewModel
-
+    private val textList = ArrayList<String>()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -27,14 +25,11 @@ class RecyclerViewFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        recycler_view.layoutManager = LinearLayoutManager(activity)
-        val adapter = RecyclerAdapter()
-        recycler_view.adapter = adapter
-        noteViewModel = ViewModelProvider(this).get(NoteViewModel::class.java)// Здесь ставится курсор ошибки
-        noteViewModel.getAllNotes().observe(viewLifecycleOwner, Observer<List<Notes>> {})
+        val recyclerAdapter = RecyclerAdapter()
+
+        recycler_view.adapter = recyclerAdapter
         add_note.setOnClickListener {
-            activity?.supportFragmentManager?.beginTransaction()?.replace(
-                R.id.fl_content,
+            activity?.supportFragmentManager?.beginTransaction()?.add(R.id.fl_content,
                 AddNoteFragment()
             )?.addToBackStack(null)?.commit()
         }

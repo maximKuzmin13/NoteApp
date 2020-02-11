@@ -1,25 +1,42 @@
 package com.example.firstapp
 
-import android.app.Application
-import android.os.AsyncTask
 import androidx.lifecycle.LiveData
+import android.os.AsyncTask
 
-class NoteRepository(application: Application) {
 
-    private var noteDao: NoteDao
+class NoteRepository(private val noteDao: NoteDao) {
 
-    private var allNotes: LiveData<List<Notes>>
+    private val allNotes: LiveData<List<Notes>> = noteDao.getAllNotes()
 
-    init {
-        val database: NoteDatabase = NoteDatabase.getInstance(
-            application.applicationContext
-        )!!
-        noteDao = database.noteDao()
-        allNotes = noteDao.getAllNotes()
+    fun insert(note: Notes) {
+        InsertNoteAsyncTask(
+            noteDao
+        ).execute(note)
+    }
+
+    fun deleteAllNotes() {
+        DeleteAllNotesAsyncTask(
+            noteDao
+        ).execute()
     }
 
     fun getAllNotes(): LiveData<List<Notes>> {
         return allNotes
+    }
+
+    private class InsertNoteAsyncTask(val noteDao: NoteDao) : AsyncTask<Notes, Unit, Unit>() {
+
+        override fun doInBackground(vararg note: Notes?) {
+            noteDao.insert(note[0]!!)
+        }
+    }
+
+
+    private class DeleteAllNotesAsyncTask(val noteDao: NoteDao) : AsyncTask<Unit, Unit, Unit>() {
+
+        override fun doInBackground(vararg p0: Unit?) {
+            noteDao.deleteAllNotes()
+        }
     }
 
 }
