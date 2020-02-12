@@ -26,7 +26,6 @@ class RecyclerViewFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val recyclerAdapter = RecyclerAdapter()
-
         recycler_view.adapter = recyclerAdapter
         add_note.setOnClickListener {
             activity?.supportFragmentManager?.beginTransaction()?.add(R.id.fl_content,

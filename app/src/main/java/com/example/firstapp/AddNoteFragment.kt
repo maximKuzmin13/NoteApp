@@ -15,18 +15,12 @@ import kotlinx.android.synthetic.main.fragment_text.*
 import kotlinx.android.synthetic.main.item_recycler.*
 
 class AddNoteFragment: Fragment(){
-    companion object {
-        const val EXTRA_TITLE = "com.anubhav87.mvvmtutorial.EXTRA_TITLE"
-    }
-    private lateinit var viewModel: NoteViewModel
+    val textnotes = ArrayList<Notes>()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewModel = ViewModelProvider(this).get(NoteViewModel::class.java)
-        viewModel.getAllNotes()?.observe(viewLifecycleOwner,
-            Observer<List<Notes>> { t -> RecyclerAdapter().setNotes(t!!) })
         (activity as AppCompatActivity).supportActionBar?.title = "Новая заметка"
         return inflater.inflate(R.layout.fragment_text, container, false)
     }
@@ -37,10 +31,12 @@ class AddNoteFragment: Fragment(){
         savebtn.setOnClickListener{
             saveNote()
             activity?.supportFragmentManager?.popBackStack()
-
         }
     }
     private fun saveNote() {
-
+        val data = text_note.text.toString()
+        val input = Notes(data)
+        textnotes.add(input)
+        RecyclerAdapter().setNotes(textnotes)
     }
 }

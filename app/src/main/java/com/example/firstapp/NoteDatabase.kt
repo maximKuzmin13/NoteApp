@@ -13,7 +13,6 @@ abstract class NoteDatabase : RoomDatabase() {
 
     abstract fun noteDao(): NoteDao
 
-
     companion object {
         private var instance: NoteDatabase? = null
 
@@ -22,7 +21,7 @@ abstract class NoteDatabase : RoomDatabase() {
                 synchronized(NoteDatabase::class) {
                     instance = Room.databaseBuilder(
                         context.applicationContext,
-                        NoteDatabase::class.java, "notes_database"
+                        NoteDatabase::class.java, "note_table"
                     )
                         .fallbackToDestructiveMigration()
                         .addCallback(roomCallback)
