@@ -7,21 +7,21 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class RecyclerAdapter: RecyclerView.Adapter<RecyclerAdapter.ItemViewHolder>(){
-    private var notes: List<Notes> = ArrayList()
+    var listnotes = ArrayList<Notes>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val itemView = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_recycler, parent, false)
         return ItemViewHolder(itemView)
     }
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        val currentNote = notes[position]
+        val currentNote = listnotes[position]
         holder.text_view.text = currentNote.getNoteText()
     }
     override fun getItemCount(): Int {
-        return notes.size
+        return listnotes.size
     }
     fun setNotes(notes: List<Notes>) {
-        this.notes = notes
+        listnotes.addAll(notes)
         notifyDataSetChanged()
     }
     inner class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
