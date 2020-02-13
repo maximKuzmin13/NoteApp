@@ -1,6 +1,7 @@
 package com.example.firstapp
 
 import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 
@@ -10,10 +11,6 @@ class NoteViewModel : ViewModel() {
 
     fun insert(note: Notes) {
         repository?.insert(note)
-    }
-
-    fun deleteAllNotes() {
-        repository?.deleteAllNotes()
     }
 
     fun getAllNotes(): LiveData<List<Notes>>? {

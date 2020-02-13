@@ -1,6 +1,5 @@
 package com.example.firstapp
 
-import RecyclerViewFragment
 import android.os.Bundle
 
 import androidx.appcompat.app.AppCompatActivity
