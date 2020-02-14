@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import android.os.AsyncTask
 
 
-class NoteRepository(private val noteDao: NoteDao) {
+class NoteRepositoryImpl(private val noteDao: NoteDao) {
 
     private val allNotes: LiveData<List<Notes>> = noteDao.getAllNotes()
 

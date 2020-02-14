@@ -2,6 +2,8 @@ package com.example.firstapp
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.example.firstapp.domain.Notes
+
 @Dao
 interface NoteDao {
 
