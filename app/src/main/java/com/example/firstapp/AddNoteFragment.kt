@@ -6,10 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.fragment_text.*
 
 class AddNoteFragment: Fragment(){
     val textList = ArrayList<Notes>()
+    private lateinit var noteViewModel: NoteViewModel
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        noteViewModel = ViewModelProvider(this@AddNoteFragment).get(NoteViewModel::class.java)
+    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -31,7 +37,6 @@ class AddNoteFragment: Fragment(){
         val data = text_note.text.toString()
         val input = Notes(data)
         textList.add(input)
-        RecyclerAdapter().
-            setNotes(textList)
+        RecyclerAdapter().setNotes(textList)
     }
 }
