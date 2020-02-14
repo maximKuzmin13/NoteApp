@@ -1,4 +1,4 @@
-package com.example.firstapp
+package com.example.firstapp.presantation
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.firstapp.domain.Notes
+import com.example.firstapp.R
 import kotlinx.android.synthetic.main.fragment_text.*
 
 class AddNoteFragment: Fragment(){

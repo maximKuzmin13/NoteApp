@@ -1,10 +1,11 @@
-package com.example.firstapp
+package com.example.firstapp.presantation
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.firstapp.R
 import com.example.firstapp.domain.Notes
 
 class RecyclerAdapter: RecyclerView.Adapter<RecyclerAdapter.ItemViewHolder>(){

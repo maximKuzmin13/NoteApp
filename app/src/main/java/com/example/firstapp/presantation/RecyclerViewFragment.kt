@@ -1,4 +1,4 @@
-package com.example.firstapp
+package com.example.firstapp.presantation
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,9 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
+import com.example.firstapp.R
 import com.example.firstapp.domain.Notes
-import com.example.firstapp.presantation.AddNoteFragment
-import com.example.firstapp.presantation.NoteViewModel
 import kotlinx.android.synthetic.main.fragment_notes.*
 import org.koin.android.ext.android.inject
 

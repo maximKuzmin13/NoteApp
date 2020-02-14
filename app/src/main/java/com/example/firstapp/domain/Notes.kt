@@ -1,4 +1,4 @@
-package com.example.firstapp
+package com.example.firstapp.domain
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

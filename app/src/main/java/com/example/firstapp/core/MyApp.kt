@@ -1,4 +1,4 @@
-package com.example.firstapp
+package com.example.firstapp.core
 
 import android.app.Application
 import com.example.firstapp.core.repositoies
