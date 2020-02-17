@@ -30,6 +30,7 @@ class AddNoteFragment: Fragment(){
         savebtn.setOnClickListener{
             val data = text_note.text.toString()
            noteViewModel.insert(Notes(data))
+
             (activity as AppCompatActivity).supportActionBar?.title = "Заметки"
             activity?.supportFragmentManager?.popBackStack()
         }
