@@ -13,10 +13,10 @@ import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val viewmodels = module {
-    viewModel { NoteViewModel(get()) }
+    viewModel { NoteViewModel(get(),get()) }
 }
 val interactorModule = module {
-    single { NoteInteratorImpl(get()) }
+    single<NoteInterator> { NoteInteratorImpl(get()) }
 }
 val repositoies = module {
     single<NoteRepository> { NoteRepositoryImpl(get()) }
