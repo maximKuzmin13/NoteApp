@@ -35,5 +35,4 @@ class AddNoteFragment: Fragment(){
             activity?.supportFragmentManager?.popBackStack()
         }
     }
-
 }
