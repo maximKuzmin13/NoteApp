@@ -15,7 +15,8 @@ import kotlinx.android.synthetic.main.fragment_text.*
 import org.koin.android.ext.android.inject
 
 class AddNoteFragment: Fragment(){
-    private val noteViewModel: NoteViewModel by inject()
+    val noteInteractor: NoteInteratorImpl by inject()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -29,8 +30,7 @@ class AddNoteFragment: Fragment(){
 
         savebtn.setOnClickListener{
             val data = text_note.text.toString()
-           noteViewModel.insert(Notes(data))
-
+            noteInteractor.insert(Notes(data))
             (activity as AppCompatActivity).supportActionBar?.title = "Заметки"
             activity?.supportFragmentManager?.popBackStack()
         }

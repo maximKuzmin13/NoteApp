@@ -16,7 +16,7 @@ class MyApp : Application() {
             // Android context
             androidContext(this@MyApp)
             // modules
-            modules(listOf(viewmodels, repositoies))
+            modules(listOf(viewmodels,interactorModule, repositoies ))
         }
 
     }

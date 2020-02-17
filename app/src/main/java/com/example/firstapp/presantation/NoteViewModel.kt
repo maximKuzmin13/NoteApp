@@ -7,8 +7,8 @@ import com.example.firstapp.domain.Notes
 import com.example.firstapp.domain.NoteRepository
 
 class NoteViewModel(
-    private val repository: NoteRepository,
-    private val iterator: NoteInterator
+    private val repository: NoteRepository
+//    private val iterator: NoteInterator
 ) : ViewModel() {
 
     private var allNotes = repository.getAllNotes()
