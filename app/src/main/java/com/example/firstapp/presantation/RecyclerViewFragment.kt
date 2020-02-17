@@ -17,7 +17,7 @@ import org.koin.android.ext.android.inject
 class RecyclerViewFragment : Fragment() {
     private val adapter = RecyclerAdapter()
 
-    private val noteViewModel: NoteViewModel by inject()
+    val noteViewModel: NoteViewModel by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater,

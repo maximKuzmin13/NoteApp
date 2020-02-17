@@ -9,20 +9,19 @@ import com.example.firstapp.R
 import com.example.firstapp.domain.Notes
 
 class RecyclerAdapter: RecyclerView.Adapter<RecyclerAdapter.ItemViewHolder>(){
-    var listnotes = ArrayList<Notes>()
+    private var listnotes: List<Notes> = ArrayList()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val itemView = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_recycler, parent, false)
         return ItemViewHolder(itemView)
     }
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        val currentNote = listnotes[position]
-        holder.text_view.text = currentNote.text
+        holder.text_view.text = listnotes[position].text
     }
     override fun getItemCount(): Int = listnotes.size
 
     fun setNotes(notes: List<Notes>) {
-        listnotes.addAll(notes)
+        this.listnotes = notes
         notifyDataSetChanged()
     }
     inner class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

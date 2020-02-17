@@ -11,7 +11,7 @@ import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val viewmodels = module {
-    viewModel { NoteViewModel(get<NoteRepository>()) }
+    viewModel { NoteViewModel(get(),get()) }
 }
 
 val repositoies = module {
