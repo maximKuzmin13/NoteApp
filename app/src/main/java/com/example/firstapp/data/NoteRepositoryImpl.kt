@@ -10,7 +10,7 @@ class NoteRepositoryImpl(private val noteDao: NoteDao) : NoteRepository {
 
     private val allNotes: LiveData<List<Notes>> = noteDao.getAllNotes()
 
-    override fun insert(vararg note: Notes) {
+    override suspend fun insert(vararg note: Notes) {
         noteDao.insert(note[0])
     }
 
