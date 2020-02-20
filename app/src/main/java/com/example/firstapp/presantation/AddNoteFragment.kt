@@ -1,23 +1,21 @@
 package com.example.firstapp.presantation
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import com.example.firstapp.domain.Notes
 import com.example.firstapp.R
-import com.example.firstapp.data.NoteInteratorImpl
-import com.example.firstapp.data.NoteRepositoryImpl
-import com.example.firstapp.domain.NoteInterator
+import com.example.firstapp.domain.Notes
 import kotlinx.android.synthetic.main.fragment_text.*
 import org.koin.android.ext.android.inject
 
+
 class AddNoteFragment: Fragment(){
-    val noteInteractor: NoteInteratorImpl by inject()
     val noteViewModel: NoteViewModel by inject()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        setHasOptionsMenu(true)
+        super.onCreate(savedInstanceState)
+    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -34,6 +32,20 @@ class AddNoteFragment: Fragment(){
             noteViewModel.insert(Notes(data))
             (activity as AppCompatActivity).supportActionBar?.title = "Заметки"
             activity?.supportFragmentManager?.popBackStack()
+        }
+    }
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.cancel_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.cancel_note -> {
+                activity?.supportFragmentManager?.popBackStack()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 }

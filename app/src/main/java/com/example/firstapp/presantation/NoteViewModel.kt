@@ -2,12 +2,10 @@ package com.example.firstapp.presantation
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.example.firstapp.core.viewmodels
 import com.example.firstapp.domain.NoteInterator
-import com.example.firstapp.domain.Notes
 import com.example.firstapp.domain.NoteRepository
+import com.example.firstapp.domain.Notes
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
@@ -23,6 +21,11 @@ class NoteViewModel(
     fun insert(note: Notes) {
         viewModelScope.launch(IO) {
             iterator.insert(note)
+        }
+    }
+    fun deleteAllNotes() {
+        viewModelScope.launch(IO) {
+            repository.deleteAllNotes()
         }
     }
     fun getAllNotes(): LiveData<List<Notes>>? {

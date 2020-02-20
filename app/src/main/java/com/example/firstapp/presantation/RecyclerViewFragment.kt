@@ -1,9 +1,7 @@
 package com.example.firstapp.presantation
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -18,7 +16,10 @@ class RecyclerViewFragment : Fragment() {
     private val adapter = RecyclerAdapter()
 
     val noteViewModel: NoteViewModel by inject()
-
+    override fun onCreate(savedInstanceState: Bundle?) {
+        setHasOptionsMenu(true)
+        super.onCreate(savedInstanceState)
+    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -40,10 +41,26 @@ class RecyclerViewFragment : Fragment() {
 
 
         add_note.setOnClickListener {
-            activity?.supportFragmentManager?.beginTransaction()?.add(
+            activity?.supportFragmentManager?.beginTransaction()?.replace(
                 R.id.fl_content,
                 AddNoteFragment()
             )?.addToBackStack(null)?.commit()
         }
     }
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.main_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.delete_all_notes -> {
+                noteViewModel.deleteAllNotes()
+                true
+            }
+            else -> {
+                super.onOptionsItemSelected(item)
+            }
+        }
+    }
+
 }

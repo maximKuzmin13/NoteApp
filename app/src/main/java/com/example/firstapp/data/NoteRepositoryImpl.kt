@@ -1,17 +1,20 @@
 package com.example.firstapp.data
 
 import androidx.lifecycle.LiveData
-import android.os.AsyncTask
-import com.example.firstapp.domain.Notes
 import com.example.firstapp.domain.NoteRepository
+import com.example.firstapp.domain.Notes
 
 
 class NoteRepositoryImpl(private val noteDao: NoteDao) : NoteRepository {
 
     private val allNotes: LiveData<List<Notes>> = noteDao.getAllNotes()
 
-    override suspend fun insert(vararg note: Notes) {
-        noteDao.insert(note[0])
+    override suspend fun insert(note: Notes) {
+        noteDao.insert(note)
+    }
+
+    override fun deleteAllNotes() {
+        noteDao.deleteAllNotes()
     }
 
     override fun getAllNotes(): LiveData<List<Notes>> {
