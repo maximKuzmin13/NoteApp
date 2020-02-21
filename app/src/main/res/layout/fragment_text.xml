@@ -39,6 +39,7 @@
         android:text="@string/save"
         android:background="@color/colorPrimary"
         android:textColor="@color/cardview_dark_background"
+        android:enabled="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/text_note"
         app:layout_constraintStart_toStartOf="parent"
