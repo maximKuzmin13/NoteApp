@@ -5,26 +5,36 @@
     android:layout_height="match_parent">
 
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_adding_note"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        style="@style/Toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
         android:id="@+id/title_edit"
         android:layout_width="0dp"
         android:layout_height="75dp"
         android:hint="@string/add_title"
-        android:inputType="textMultiLine"
         android:imeOptions="actionDone"
+        android:inputType="textMultiLine"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_adding_note" />
 
     <EditText
         android:id="@+id/text_note"
         android:layout_width="match_parent"
         android:layout_height="0dip"
         android:gravity="top"
-        android:inputType="textMultiLine"
-        android:lines="20"
         android:hint="@string/add_text"
         android:imeOptions="actionDone"
+        android:inputType="textMultiLine"
+        android:lines="20"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,12 +46,12 @@
         android:id="@+id/savebtn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/save"
+        android:layout_alignParentBottom="true"
         android:background="@color/colorPrimary"
-        android:textColor="@color/cardview_dark_background"
         android:enabled="false"
+        android:text="@string/save"
+        android:textColor="@color/cardview_dark_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/text_note"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_alignParentBottom="true"/>
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

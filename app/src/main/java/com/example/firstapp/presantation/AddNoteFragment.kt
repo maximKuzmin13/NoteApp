@@ -1,10 +1,14 @@
 package com.example.firstapp.presantation
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import com.example.firstapp.R
 import com.example.firstapp.domain.Notes
@@ -15,26 +19,25 @@ import java.util.*
 
 
 class AddNoteFragment: Fragment(){
-    val noteViewModel: NoteViewModel by inject()
-    val format = "yyyy.MM.dd \n     hh:mm"
-    val dateFormat = SimpleDateFormat(format)
-    override fun onCreate(savedInstanceState: Bundle?) {
-        setHasOptionsMenu(true)
-        super.onCreate(savedInstanceState)
+    private val noteViewModel: NoteViewModel by inject()
+    private val format = "yyyy.MM.dd \n     hh:mm"
+    @SuppressLint("SimpleDateFormat")
+    private val dateFormat = SimpleDateFormat(format)
 
-    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        val newNoteString = context?.getString(R.string.new_note)
-        (activity as AppCompatActivity).supportActionBar?.title = newNoteString
         return inflater.inflate(R.layout.fragment_text, container, false)
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (activity as AppCompatActivity).setSupportActionBar(toolbar_adding_note)
+        toolbar_adding_note?.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
+        val addNoteString = context?.getString(R.string.add_note)
+        toolbar_adding_note?.title = addNoteString
+        toolbar_adding_note?.setNavigationOnClickListener { activity?.onBackPressed() }
         text_note?.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
                 savebtn.isEnabled = text_note.length() > 1
@@ -52,20 +55,6 @@ class AddNoteFragment: Fragment(){
             val titleString = context?.getString(R.string.notes)
             (activity as AppCompatActivity).supportActionBar?.title = titleString
             activity?.supportFragmentManager?.popBackStack()
-        }
-    }
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.cancel_menu, menu)
-        super.onCreateOptionsMenu(menu, inflater)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.cancel_note -> {
-                activity?.supportFragmentManager?.popBackStack()
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
         }
     }
 }
