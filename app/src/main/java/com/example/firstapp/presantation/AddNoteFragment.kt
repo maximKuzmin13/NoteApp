@@ -35,7 +35,7 @@ class AddNoteFragment: Fragment(){
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        title_edit?.addTextChangedListener(object : TextWatcher {
+        text_note?.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
                 savebtn.isEnabled = text_note.length() > 1
             }
