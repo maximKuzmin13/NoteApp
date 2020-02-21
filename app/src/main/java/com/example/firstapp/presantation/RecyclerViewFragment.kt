@@ -25,21 +25,21 @@ class RecyclerViewFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        (activity as AppCompatActivity).supportActionBar?.title = "Заметки"
+        val titleString = context?.getString(R.string.notes)
+        (activity as AppCompatActivity).supportActionBar?.title = titleString
         return inflater.inflate(R.layout.fragment_notes, container, false)
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val recyclerview = view.findViewById<RecyclerView>(R.id.recycler_view)
+        val topPaddingDecoration = RecyclerItemDecorator(30)
+        recyclerview.addItemDecoration(topPaddingDecoration)
         recyclerview.adapter = this.adapter
 
         noteViewModel.getAllNotes()?.observe(viewLifecycleOwner, Observer<List<Notes>> { notes ->
             adapter.setNotes(notes)
         })
-
-
         add_note.setOnClickListener {
             activity?.supportFragmentManager?.beginTransaction()?.replace(
                 R.id.fl_content,
@@ -47,6 +47,7 @@ class RecyclerViewFragment : Fragment() {
             )?.addToBackStack(null)?.commit()
         }
     }
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.main_menu, menu)
         super.onCreateOptionsMenu(menu, inflater)

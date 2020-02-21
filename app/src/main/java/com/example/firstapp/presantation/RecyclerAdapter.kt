@@ -16,7 +16,9 @@ class RecyclerAdapter: RecyclerView.Adapter<RecyclerAdapter.ItemViewHolder>(){
         return ItemViewHolder(itemView)
     }
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        holder.text_view.text = listnotes[position].text
+        holder.textView.text = listnotes[position].text
+        holder.titleText.text = listnotes[position].title
+        holder.dateNote.text = listnotes[position].noteDate
     }
     override fun getItemCount(): Int = listnotes.size
 
@@ -25,6 +27,9 @@ class RecyclerAdapter: RecyclerView.Adapter<RecyclerAdapter.ItemViewHolder>(){
         notifyDataSetChanged()
     }
     inner class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val text_view: TextView = itemView.findViewById(R.id.rv_text)
+        val textView: TextView = itemView.findViewById(R.id.rv_text)
+        val titleText: TextView = itemView.findViewById(R.id.title_note)
+        val dateNote: TextView = itemView.findViewById(R.id.date)
+
     }
 }

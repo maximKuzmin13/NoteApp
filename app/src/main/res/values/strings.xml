@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">FirstApp</string>
     <string name="add_note">Добавить заметку</string>
+    <string name="notes">Заметки</string>
+    <string name="new_note">Новая заметка</string>
+    <string name="add_title">Введите название заметки</string>
+    <string name="add_text">Введите текст заметки</string>
+    <string name="save">Сохранить</string>
 </resources>

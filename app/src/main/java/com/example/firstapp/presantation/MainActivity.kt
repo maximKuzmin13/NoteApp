@@ -14,7 +14,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.android.ext.android.inject
 
 class MainActivity :  AppCompatActivity() {
-    private val noteViewModel: NoteViewModel by inject()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -23,5 +22,6 @@ class MainActivity :  AppCompatActivity() {
             supportFragmentManager.beginTransaction()
         mFragmentTransaction.add(R.id.fl_content, fragment).commit()
     }
-
 }
+
+
