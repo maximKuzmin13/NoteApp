@@ -1,5 +1,6 @@
 package com.example.firstapp.presantation
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
@@ -9,11 +10,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.firstapp.R
 import com.example.firstapp.domain.Notes
 import kotlinx.android.synthetic.main.fragment_notes.*
-import kotlinx.android.synthetic.main.fragment_text.*
 import org.koin.android.ext.android.inject
 
 
-class RecyclerViewFragment : Fragment() {
+class RecyclerViewFragment : Fragment(),NoteClickListener {
     private val adapter = RecyclerAdapter()
 
     val noteViewModel: NoteViewModel by inject()
@@ -31,12 +31,12 @@ class RecyclerViewFragment : Fragment() {
         setHasOptionsMenu(true)
         (activity as AppCompatActivity).setSupportActionBar(toolbar_recycler)
         val titleString = context?.getString(R.string.notes)
-        toolbar_recycler?.title = titleString
+        toolbar_recycler.title = titleString
         val recyclerview = view.findViewById<RecyclerView>(R.id.recycler_view)
         val topPaddingDecoration = RecyclerItemDecorator(30)
         recyclerview.addItemDecoration(topPaddingDecoration)
         recyclerview.adapter = this.adapter
-
+        adapter.setListener(this)
         noteViewModel.getAllNotes()?.observe(viewLifecycleOwner, Observer<List<Notes>> { notes ->
             adapter.setNotes(notes)
         })
@@ -62,6 +62,16 @@ class RecyclerViewFragment : Fragment() {
                 super.onOptionsItemSelected(item)
             }
         }
+    }
+
+    override fun onNoteClick(note: Notes) {
+        val editNoteTitle = context!!.getString(R.string.edit_title)
+        toolbar_recycler.title = editNoteTitle
+        activity?.supportFragmentManager?.beginTransaction()?.replace(
+        R.id.fl_content,
+        AddNoteFragment()
+    )?.addToBackStack(null)?.commit()
+
     }
 
 }
