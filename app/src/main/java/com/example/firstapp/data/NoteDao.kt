@@ -7,7 +7,7 @@ import com.example.firstapp.domain.Notes
 @Dao
 interface NoteDao {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(note: Notes)
 
     @Query("DELETE FROM note_table")

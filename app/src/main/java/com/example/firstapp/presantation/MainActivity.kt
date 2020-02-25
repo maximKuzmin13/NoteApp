@@ -17,10 +17,11 @@ class MainActivity :  AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val fragment = RecyclerViewFragment()
-        val mFragmentTransaction: FragmentTransaction =
-            supportFragmentManager.beginTransaction()
-        mFragmentTransaction.add(R.id.fl_content, fragment).commit()
+        val fragment = supportFragmentManager.findFragmentById(R.id.fl_content) ?: RecyclerViewFragment()
+
+        val mFragmentTransaction: FragmentTransaction = supportFragmentManager.beginTransaction()
+
+        mFragmentTransaction.replace(R.id.fl_content, fragment).commit()
     }
 }
 
