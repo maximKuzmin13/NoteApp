@@ -1,6 +1,5 @@
 package com.example.firstapp.presantation
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
@@ -10,16 +9,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.firstapp.R
 import com.example.firstapp.domain.Notes
 import kotlinx.android.synthetic.main.fragment_notes.*
-import kotlinx.android.synthetic.main.fragment_text.*
-import kotlinx.android.synthetic.main.item_recycler.*
 import org.koin.android.ext.android.inject
-import org.koin.core.parameter.parametersOf
 
 
-class RecyclerViewFragment : BaseFragment(),NoteClickListener {
-    override var titleId: Int = R.string.notes
+class RecyclerViewFragment : Fragment(),NoteClickListener {
     private val adapter = RecyclerAdapter()
-
     private val noteViewModel: NoteViewModel by inject()
 
     override fun onCreateView(
@@ -48,7 +42,6 @@ class RecyclerViewFragment : BaseFragment(),NoteClickListener {
             )?.addToBackStack(AddNoteFragment.TAG)?.commit()
         }
     }
-
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.main_menu, menu)
         super.onCreateOptionsMenu(menu, inflater)
@@ -64,17 +57,15 @@ class RecyclerViewFragment : BaseFragment(),NoteClickListener {
             }
         }
     }
-
     override fun onNoteClick(note: Notes) {
         activity?.supportFragmentManager?.beginTransaction()?.replace(
         R.id.fl_content,
         AddNoteFragment.newInstance(
+            note.id,
             context?.getString(R.string.edit_title)!!,
-            rv_text.text.toString(),
-            title_note.text.toString()
-
+            note.text,
+            note.title
             )
     )?.addToBackStack(null)?.commit()
-
     }
 }

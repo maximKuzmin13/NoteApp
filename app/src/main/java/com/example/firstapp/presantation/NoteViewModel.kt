@@ -17,13 +17,13 @@ class NoteViewModel(
 ) : ViewModel() {
     private var allNotes = repository.getAllNotes()
     val title = MutableLiveData<String>()
-
     val text = MutableLiveData<String>()
 
-    fun setTitle(titleld : String) {
+    fun setTitle(titleld: String) {
         title.value = titleld
     }
-    fun setText(textLD : String){
+
+    fun setText(textLD: String) {
         text.value = textLD
     }
 //    fun insert(note: Notes) {
@@ -37,17 +37,18 @@ class NoteViewModel(
             repository.deleteAllNotes()
         }
     }
+
     fun getAllNotes(): LiveData<List<Notes>>? {
-            return allNotes
+        return allNotes
     }
 
-    fun saveNotes() {
+    fun saveNotes(id: Int?) {
         viewModelScope.launch {
             val notes = Notes(
                 title = title.value.toString(),
                 text = text.value.toString(),
                 noteDate = Date().toString(),
-                id = 0
+                id = id ?: 0
             )
             iterator.insert(notes)
         }

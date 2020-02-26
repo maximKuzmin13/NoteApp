@@ -39,6 +39,5 @@ class RecyclerAdapter: RecyclerView.Adapter<RecyclerAdapter.ItemViewHolder>(){
         val textView: TextView = itemView.findViewById(R.id.rv_text)
         val titleText: TextView = itemView.findViewById(R.id.title_note)
         val dateNote: TextView = itemView.findViewById(R.id.date)
-
     }
 }
