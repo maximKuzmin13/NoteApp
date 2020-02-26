@@ -25,13 +25,16 @@ class RecyclerViewFragment : Fragment(),NoteClickListener {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         setHasOptionsMenu(true)
         (activity as AppCompatActivity).setSupportActionBar(toolbar_recycler)
+
         val recyclerview = view.findViewById<RecyclerView>(R.id.recycler_view)
         val topPaddingDecoration = RecyclerItemDecorator(30)
         recyclerview.addItemDecoration(topPaddingDecoration)
         recyclerview.adapter = this.adapter
         adapter.setListener(this)
+
         noteViewModel.getAllNotes()?.observe(viewLifecycleOwner, Observer<List<Notes>> { notes ->
             adapter.setNotes(notes)
         })
